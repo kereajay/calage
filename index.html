@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: orange;
+        }
+
+        #one {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            text-align: center;
+            margin: auto;
+            margin-top: 15%;
+            width: 450px;
+            height: 100px;
+            background-color: aqua;
+            border-radius: 5px;
+            padding: 25px;
+        }
+
+        #onea {
+            margin-right: 8%;
+
+
+        }
+
+        #onea input {
+            width: 250px;
+            height: 50px;
+            border-radius: 10px;
+            border: 1px solid white;
+            font-size: large;
+            padding: 15px;
+        }
+
+        #oneb button {
+            width: 120px;
+            height: 50px;
+            border-radius: 10px;
+            border: 1px solid white;
+        }
+
+        #two {
+            display: flex;
+            flex-direction: row;
+            margin: auto;
+            justify-content: space-between;
+            width: 450px;
+            margin-top: 5%;
+
+        }
+
+        #twoa {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            color: grey;
+            text-align: center;
+            padding: 2%;
+            border-radius: 5px;
+        }
+
+        #twoa h1 {
+            color: aliceblue;
+        }
+
+        #twob {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            color: grey;
+            text-align: center;
+            padding: 2%;
+            border-radius: 5px;
+        }
+
+        #twob h1 {
+            color: aliceblue;
+        }
+
+        #twoc {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            color: grey;
+            text-align: center;
+            padding: 2%;
+            border-radius: 5px;
+        }
+
+        #twoc h1 {
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="one">
+        <div id="onea">
+            <input type="date" id="input1">
+        </div>
+        <div id="oneb">
+            <button value="Calculate" id="oneb1">Calculate</button>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div id="two">
+        <div id="twoa">
+            <h1 id="twoa1">-</h1>
+            <br>
+            <p>Years</p>
+        </div>
+        <div id="twob">
+            <h1 id="twob1">-</h1>
+            <br>
+            <p>Month</p>
+
+        </div>
+        <div id="twoc">
+            <h1 id="twoc1">-</h1>
+            <br>
+            <p>Days</p>
+
+        </div>
+    </div>
+    <script>
+
+        let b = document.getElementById('oneb1');
+        b.addEventListener('click', () => {
+            let a = document.getElementById('input1');
+            let b = a.value
+            let sep = b.split("-");
+            // console.log(sep);
+            let py = parseInt(sep[0])
+            let pm = parseInt(sep[1])
+            let pd = parseInt(sep[2])
+            let date = new Date();
+            let cy = date.getFullYear();
+            let cm = date.getMonth() + 1;
+            let cd = date.getDate();
+           if(py>=cy&&pm>=cm&&pd>=cd){
+            alert("not yet born")
+           }
+            let year;
+            if (cy >= py) {
+                year = cy - py;
+            }
+            let month;
+            if (cm > pm) {
+                month = cm - pm;
+            }
+            else {
+                year--;
+                month = 12 + cm - pm;
+            }
+            //   console.log(month);
+            //   console.log(year);
+
+            let dates;
+            if (cd > pd) {
+                dates = cd - pd;
+            }
+            else {
+                month--;
+                let noofdates = daysinmonth(pm, py);
+                dates = noofdates + cd - pd;
+            }
+            if (month < 0) {
+                month = 11;
+                year--;
+            }
+            // console.log(dates);
+            // console.log(month);
+            // console.log(year);
+          
+
+            let yeardisplay=document.getElementById('twoa1');
+            if(year<0){
+                
+                yeardisplay.innerText="0";
+            }
+            else{
+            yeardisplay.innerText=year;
+            }
+            let monthDisplay=document.getElementById('twob1')
+            monthDisplay.innerText=month;
+            let dateDisplay=document.getElementById('twoc1')
+            dateDisplay.innerText=dates;
+            
+
+        })
+        function daysinmonth(month, year) {
+            return new Date(year, month, 0).getDate();
+        }
+        // console.log(dates);
+        // console.log(month);
+        //   console.log(year);
+
+    </script>
+</body>
+
+</html>
